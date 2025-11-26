@@ -1,0 +1,41 @@
+{
+  "name": "twinos",
+  "version": "1.0.0",
+  "description": "TwinOS System Monitor",
+  "main": "electron/main.js",
+  "scripts": {
+    "backend": "cd backend && node index.js",
+    "frontend": "cd frontend && npm run dev",
+    "electron": "concurrently \"npm run backend\" \"npm run frontend\" \"electron .\"",
+    "build-frontend": "cd frontend && npm run build",
+    "package": "npm run build-frontend && electron-builder"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "electron": "^39.2.3",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+  "appId": "com.twinos.app",
+  "productName": "TwinOS",
+  "directories": {
+    "output": "dist-app",
+    "app": "."
+  },
+  "files": [
+    "electron/**/*",
+    "backend/**/*",
+    "frontend/dist/**/*",
+    "package.json"
+  ],
+  "asar": false,
+  "win": {
+    "target": "nsis",
+    "icon": null
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true
+  }
+}
+}
